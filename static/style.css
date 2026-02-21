@@ -1,0 +1,54 @@
+body {
+    background: linear-gradient(135deg,#0b0f2f,#1a1f4d,#2d1e60);
+    color: white;
+    font-family: Arial;
+    padding: 30px;
+}
+
+input, select, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #4da6ff;
+    background-color: #11153a;
+    color: white;
+}
+
+button {
+    background-color: #4da6ff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover { background-color: #7f5af0; }
+
+.card {
+    background-color: #11153a;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #1a1f4d;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 25px;
+    width: 0%;
+    background: linear-gradient(90deg,#4da6ff,#7f5af0);
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    font-weight: bold;
+    transition: width 1s ease-in-out;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SkillBridge AI - Qassim University</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>SkillBridge AI - Qassim University</h1>
+
+<form id="form">
+    <label>Course Name:</label>
+    <input type="text" name="course_name" placeholder="Enter course name">
+
+    <label>Select Major:</label>
+    <select name="major">
+        {% for major in majors %}
+            <option value="{{ major }}">{{ major }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Select Course Level:</label>
+    <select name="level">
+        <option value="Basic">Basic</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+    </select>
+
+    <h3>Option 1: Upload Course PDF</h3>
+    <input type="file" name="pdf_file">
+
+    <h3>OR</h3>
+
+    <h3>Option 2: Paste Course Description</h3>
+    <textarea name="text_input" rows="6"></textarea>
+
+    <button type="submit">Analyze</button>
+</form>
+
+<div class="card" id="results" style="display:none;">
+    <p><strong>Compatibility Score</strong></p>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">0%</div>
+    </div>
+
+    <p><strong>Matched Skills:</strong> <span id="matched"></span></p>
+    <p><strong>Missing Skills:</strong> <span id="missing"></span></p>
+    <p><strong>Recommendation:</strong> <span id="recommendation"></span></p>
+</div>
+
+<script>
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    fetch("/analyze", { method: "POST", body: formData })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("results").style.display = "block";
+
+        let progressBar = document.getElementById("progressBar");
+        progressBar.style.width = data.score + "%";
+        progressBar.innerText = data.score + "%";
+
+        document.getElementById("matched").innerText = data.matched.join(", ");
+        document.getElementById("missing").innerText = data.missing.join(", ");
+        document.getElementById("recommendation").innerText = data.recommendation;
+    });
+});
+</script>
+</body>
+</html>

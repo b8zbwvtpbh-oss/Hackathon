@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard - SkillBridge AI</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Dashboard - SkillBridge AI</h1>
+
+<table>
+<tr>
+<th>ID</th><th>Course</th><th>Major</th><th>Score</th><th>Matched</th><th>Missing</th><th>Date</th></tr>
+{% for row in analyses %}
+<tr>
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[4] }}</td>
+<td>{{ row[5] }}</td>
+<td>{{ row[6] }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
